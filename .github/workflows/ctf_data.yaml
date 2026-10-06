@@ -1,4 +1,4 @@
-# Workflow for updating CTFs table whenever ctf_ids.yaml is updated
+# Workflow for updating CTFs table and fetching CTFs participated in
 name: update CTFs table
 
 on:
@@ -62,10 +62,10 @@ jobs:
         run: |
           if [ -n "$(git status --porcelain data/)" ]; then
             echo "[+] data/ctf_data.yaml has been updated"
-            git add data/ctf_data.yaml
+            git add data/
             git commit -m "chore(data): update ctfs data"
             git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
           else
-            echo "[-] No change in data/ctf_data.yaml"
+            echo "[-] No change in data/"
           fi
 
